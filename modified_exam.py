@@ -39,7 +39,7 @@ def exam():
             'a. Abuja\nb.Lagos\nc.Portharcourt', 'a. Swiss\nb.Dollar\n.Krona', 'a. Brazil\nb. Argentina\nc. Nigeria',
             'a. Gold-United State Dollar\nb. Silver-United State Dollar\nc. Xaugh-United State Dollar',
             'a. Ghana\n b.Ivory Coast\nc. Estonia', 'a. John C. Maxwell\nb. Richard Kiyosaki\nc. Chimamanda Achebe',
-            'a. Facebook\nb. Apple\nc. X', 'a. President Babangida Ibrahim\n b. Col. Ibrahim Traore\n c. President Donald J. Trump',
+            'a. Facebook\nb. Apple\nc. X', 'a. President Babangida Ibrahim\n b. Cap. Ibrahim Traore\n c. President Donald J. Trump',
             'a Senator Dino Melaye\nb. Senator Omoyele Sowore\nc. Senator Godswill Akpabio']
     answer =['b', 'a', 'c', 'b','a','c','b','b','b','c']
     score, n= 0,0
