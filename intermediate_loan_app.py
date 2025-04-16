@@ -1,10 +1,81 @@
 #This is an intermediate version of our loan payment stimulation app. On this app, you can borrow and pay your loan
+import re
+
+info_needed = [
+    'First Name', 'Last Name', 'Address', 'Phone Number', 'Email',
+    'Username', 'Password', 'Bank Verification Number',
+    'Next of Kin', 'Next of Kin Phone Number'
+]
+
+BVN_List = ['22392622813', '22392622814', '22392622815', 
+            '22392622816', '22392622817', '22392622818', 
+            '22392622819', '22392622820']
+
+user_info = {}
+
+# def is_valid_phone(phone):
+#     return phone.isdigit() and len(phone) == 11
+
+# def is_valid_email(email):
+#     return re.fullmatch(r"[^@]+@[^@]+\.[^@]+", email)
+
+# def is_strong_password(password):
+#     return (len(password) >= 8 and 
+#             re.search(r'[A-Z]', password) and 
+#             re.search(r'[a-z]', password) and 
+#             re.search(r'[0-9]', password))
+
 def user_registration():
-    "Pls fill your information and make sure your enter valid details"
-    info_needed =['First Name', 'Last Name', 'Address', 'Phone Number', 'Email', 'Username', 'Password', 'Bank Verification Number', 'Phone Number', 'Next of Kin', ]
+    print("📋 Please fill in your details:")
     
+    for i in info_needed:
+        while True:
+            value = input(f"Enter your {i}: ").strip()
+            
+            
+            if i =='Phone Number':
+                confirmation = value.isdigit() and len(value) ==11
+                if not confirmation:
+                    print("❌ Phone number must be 11 digits.")
+                    continue
+
+            elif i == 'Email':
+                email_confirmation=re.fullmatch(r"[^@]+@[^@]+\.[^@]+", value)
+                if not email_confirmation:
+                    print("❌ Invalid email format.")
+                    continue
+
+            elif i == 'Password':
+                password_validator = (len(value) >= 8 and re.search(r'[A-Z]', value) and re.search(r'[a-z]', value) and re.search(r'[0-9]', value))
+                if not password_validator:
+                    print("❌ Password must be at least 8 characters and contain upper, lower, and numbers.")
+                    continue
+
+            elif i == 'Bank Verification Number':
+                if value not in BVN_List:
+                    print("❌ Invalid BVN. Must match one from the database.")
+                    continue
+
+            # Passed validation
+            user_info[i] = value
+            break
+
+    print("✅ You have successfully registered!")
+    return user_info
+
+# Run registration
+user = user_registration()
+print("\n🔎 Your registered info:")
+for k, v in user.items():
+    print(f"{k}: {v}")
+
+def login(username, password):
+
+    u_name = input("Enter your username: ")
+    password =
+
 def get_valid_integer(prompt):
-    """Prompt the user until a valid integer is entered."""
+    """This prompt the user until  until a valid integer is entered."""
     while True:
         try:
             return int(input(prompt))
@@ -76,4 +147,4 @@ def loan_payment_system():
         print("⚠️ You still have an outstanding loan balance. Please settle it as soon as possible.")
 
 
-loan_payment_system()
+# loan_payment_system()
