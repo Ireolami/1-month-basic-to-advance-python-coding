@@ -1,6 +1,6 @@
 #This is an intermediate version of our loan payment stimulation app. On this app, you can borrow and pay your loan
 import re
-
+import sys
 info_needed = [
     'First Name', 'Last Name', 'Address', 'Phone Number', 'Email',
     'Username', 'Password', 'Bank Verification Number',
@@ -66,14 +66,30 @@ def user_registration():
 # Run registration
 user = user_registration()
 print("\n🔎 Your registered info:")
-for k, v in user.items():
-    print(f"{k}: {v}")
+# for k, v in user.items():
+#     print(f"{k}: {v}")
+print(f"Your Username is {user['Username']}, Your password is {user['Password']}")
+u_log, u_p = {user['Username']},{user['Password']}
 
-def login(username, password):
+def login():
 
     u_name = input("Enter your username: ")
-    password =
-
+    password =input("Enter your password: ")
+    attempt = 0
+    while True:
+        if u_name == u_log and password == u_p:
+            print("You have successfully login")
+            loan_payment_system()
+            break
+        else:
+            print("Username or Password is incorrect, Try again")
+            u_name = input("Enter your username: ")
+            password =input("Enter your password: ")
+        attempt +=1
+        if attempt ==2:
+            print("You have exceeded your maximum trial")
+            sys.exit()
+login()
 def get_valid_integer(prompt):
     """This prompt the user until  until a valid integer is entered."""
     while True:

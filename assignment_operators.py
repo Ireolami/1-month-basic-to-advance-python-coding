@@ -45,13 +45,7 @@ for i in range(no_of_instalments):
                 else:
                     total_loan -=payment + outstanding
                     print(f"You have been able to pay your loan for this month\n Total loan paid is {payment_per_installment}\nYour loan balance is {total_loan}")
-                    # remaining =payment_per_installment- (payment + outstanding)
-                    # decide =(f"You still have {remaining}  to pay...\n Would you like to pay it now? ")
-                    # if decide.lower() not in ("yes", 'y'):
-                    #     interestt = 0.1 * remaining
-                    #     total_loan += interestt
-                    #     print(f"You didn't balance your loan for this month, 0.1% of your outstanding has been added which is {interestt}\n and your balance is {total_loan}")
-                    #     break
+                    
                        
 
         else:
