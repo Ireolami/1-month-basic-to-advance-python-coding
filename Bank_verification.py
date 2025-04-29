@@ -36,13 +36,12 @@ cursor = conn.cursor()
 
 
 def create():
-    querry = """INSERT INTO Bvn(id, Full_Name, Address,Occupation, BVN) VALUES(%s,%s,%s,%s,%s)
+    querry = """INSERT INTO Bvn (Full_Name, Address,Occupation, BVN) VALUES(%s,%s,%s,%s)
             """
 
     info= ['Full Name', 'Address', 'Occupation']
     val = []
-    id = 20250401
-    val.append(id)
+    
     bvn = random.randrange(10102020301, 20203030432)
     
     for inf in info:

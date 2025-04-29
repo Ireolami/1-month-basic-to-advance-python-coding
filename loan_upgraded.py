@@ -8,9 +8,9 @@ myconn = connection.connect(
 )
 cursor = myconn.cursor()
 querry = """
-        INSERT INTO customers(customer_id, FirstName, LastName, Address, PhoneNumber, Username, 
+        INSERT INTO customers (FirstName, LastName, Address, PhoneNumber, Username, 
         pwd, Email, Next_of_kin, Next_of_kin_Number, BVN)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s)"""
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s, %s)"""
 
 def bvn_search():
     bvnconn= connection.connect(host='127.0.0.1', 
@@ -28,27 +28,14 @@ def bvn_search():
         #print(f"Found {result}")
 
 bvn_search()
-def confirm_bvn():
-    print("You are welcome to i-Loan App\n\nDo you have a BVN?")
-    response =input("Enter yes or no: ")
-    if response.lower() in ('yes', 'y'):
-        user_registration()
-    else:
-        next_step = input("Would you like to register for BVN? Enter Yes to Register and No to Exit: ")
-        if next_step.lower() not in ('yes', 'y'):
-            print("Sorry you cannot register for this Application without BVN")
-            sys.exit()
-        else:
-            print("You are being redirected to BVN Creation portal\nRedirecting")
-            time.sleep(5)
-            create()
+
 def user_registration():
     print("📋 Please fill in your details:")
     info_needed =['FirstName', 'LastName', 'Address', "PhoneNumber", "Username", "pwd", "Email", "Next_of_kin", "Next_of_kin_Num", "BVN"]
     global user_info
     user_info =[]
-    customer_id =20250417
-    user_info.append(customer_id)
+    # customer_id =20250417
+    # user_info.append(customer_id)
     for i in info_needed:
         while True:
             
@@ -107,11 +94,28 @@ def user_registration():
             break
 
     
+    cursor.execute(querry, user_info)
+    myconn.commit()
+    cursor.close()
+    print("Registration Successful")
+# user_registration()
 
-user_registration()
-cursor.execute(querry, user_info)
-myconn.commit()
-cursor.close()
 
-
+def confirm_bvn():
+    print("You are welcome to i-Loan App\n\nDo you have a BVN?")
+    response =input("Enter yes or no: ")
+    if response.lower() in ('yes', 'y'):
+        user_registration()
+    else:
+        next_step = input("Would you like to register for BVN? Enter Yes to Register and No to Exit: ")
+        if next_step.lower() not in ('yes', 'y'):
+            print("Sorry you cannot register for this Application without BVN")
+            sys.exit()
+        else:
+            print("You are being redirected to BVN Creation portal\nRedirecting")
+            time.sleep(5)
+            create()
+            print("Welcome back")
+            user_registration()
+confirm_bvn()
     
